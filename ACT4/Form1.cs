@@ -170,14 +170,15 @@ namespace ACT4
                         bestMoves.Clear();
                         if (currentState.Y[i] != j)
                             bestMoves.Add(new Point(i, j));
-                    } else if (bestHeuristicValue == heuristicTable[i,j])
-                    {
+                    } else if (bestHeuristicValue == heuristicTable[i,j] || 
+                        new Random().NextDouble() <= getTemperature(heuristicTable[i, j]))
+                    
                         if (currentState.Y[i] != j)
                             bestMoves.Add(new Point(i, j));
-                    }
+                    
                 }
             }
-            label5.Text = "Possible Moves (H="+bestHeuristicValue+")";
+            label5.Text = "Possible Moves (H=" + bestHeuristicValue + ")";
             return bestMoves;
         }
 
@@ -237,6 +238,11 @@ namespace ACT4
         private void Form1_Load(object sender, EventArgs e)
         {
 
-        }        
+        }
+
+        private double getTemperature(int hValue)
+        {
+            return Math.Pow(Math.E, hValue / (moveCounter + 1));
+        }
     }
 }

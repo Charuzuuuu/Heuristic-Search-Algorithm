@@ -32,5 +32,9 @@ namespace ACT4
             Y[4] = f.Y[4];
             Y[5] = f.Y[5];
         }
+        public override string ToString()
+        {
+            return $"[{Y[0]}, {Y[1]}, {Y[2]}, {Y[3]}, {Y[4]}, {Y[5]}]";
+        }
     }
 }
